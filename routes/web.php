@@ -20,7 +20,7 @@ Route::get('/robots.txt', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
-    Route::match(['get', 'post'],'/VoyagerS',                              ['uses' => 'AdminProductController@VoyagerUpdate',  'as' => 'update']);
+    Route::match(['get', 'post'],'/VoyagerS/{id}',                              ['uses' => 'AdminProductController@VoyagerUpdate',  'as' => 'update']);
     Route::match(['get', 'post'],'/VoyagerStore',                           ['uses' => 'AdminProductController@VoyagerStore',  'as' => 'store']);
 
     Route::match(['get', 'post'], 'export',                 ['as' => 'export',               'uses' => 'CsvController@export']);

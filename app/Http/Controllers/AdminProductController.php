@@ -17,20 +17,10 @@ use TCG\Voyager\Facades\Voyager;
 
 class AdminProductController extends Controller
 {
-    public function VoyagerUpdate(Request $request, $id){
-        $request->sizes = json_encode($request->sizes);
+    public function VoyagerUpdate(Request $request, $id, Product $product){
 
-                    //перебираем и сохраняем
-                    $products = $this->firstOrNew(
-                        [
-                            'date'          => $request['date'],
-                            'ip'            => $request['ip']
-                        ]
-                    );
-                    $products -> subnet_id     = $request['subnet_id'];
-                    $products -> device        = $request['device'];
-                    $products -> user_agent    = $request['user_agent'];
-                    $products -> save();
+
+        $product->UpdateProducts($request, $id);
 
         return redirect()->route('voyager.products.index');
 
@@ -38,6 +28,11 @@ class AdminProductController extends Controller
 
     public function VoyagerStore(Request $request, Product $product)
     {
+
+        $request->validate([
+            'author_id' => 'required',
+        ]);
+
         $product->CreateProducts($request);
 
         return redirect()->route('voyager.products.index');

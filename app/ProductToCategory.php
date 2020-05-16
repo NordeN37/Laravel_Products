@@ -14,10 +14,13 @@ class ProductToCategory extends Model
     protected $casts = [
 
     ];
+    
+    public $timestamps = false;
+
 
     protected $table = 'products_categories';
 
-    public function posts(){
+    public function product(){
         return $this->belongsTo('App\Product', 'product_id', 'id');
     }
 

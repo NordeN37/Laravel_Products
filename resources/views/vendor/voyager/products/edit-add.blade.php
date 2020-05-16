@@ -67,10 +67,10 @@
             <!-- PUT Method if we are editing -->
             {{ csrf_field() }}
             @if(isset($dataTypeContent->id))
-                {{ method_field("PUT") }}
+                {{ method_field("POST") }}
             @endif
 
-            <input type="hidden" name="author_id" value="{{ Auth::id() }}">
+            <input type="hidden" name="views" value="1">
             <div class="row">
                 <div class="col-md-8">
                     <!-- ### TITLE ### -->
@@ -124,23 +124,7 @@
                             {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
                         </div>
                     </div><!-- .panel -->
-
-                    <!-- ### EXCERPT ### -->
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{!! __('voyager::post.excerpt') !!}</h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            @include('voyager::multilingual.input-hidden', [
-                                '_field_name'  => 'excerpt',
-                                '_field_trans' => get_field_translations($dataTypeContent, 'excerpt')
-                            ])
-                            <textarea class="form-control" name="excerpt">{{ $dataTypeContent->excerpt ?? '' }}</textarea>
-                        </div>
-                    </div>
+                    
 
                     <div class="panel">
                         <div class="panel-heading">
@@ -237,12 +221,24 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            @if(isset($dataTypeContent->image))
-                                <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image( $dataTypeContent->image ) }}" style="width:100%" />
+                            @if(isset($dataTypeContent->image_one))
+                                <img src="{{ filter_var($dataTypeContent->image_one, FILTER_VALIDATE_URL) ? $dataTypeContent->image_one : Voyager::image( $dataTypeContent->image_one ) }}" style="width:100%" />
                             @endif
                             <input type="file" name="image_one">
+
+                                @if(isset($dataTypeContent->image_two))
+                                    <img src="{{ filter_var($dataTypeContent->image_two, FILTER_VALIDATE_URL) ? $dataTypeContent->image_two : Voyager::image( $dataTypeContent->image_two ) }}" style="width:100%" />
+                                @endif
                             <input type="file" name="image_two">
+
+                                @if(isset($dataTypeContent->image_three))
+                                    <img src="{{ filter_var($dataTypeContent->image_three, FILTER_VALIDATE_URL) ? $dataTypeContent->image_three : Voyager::image( $dataTypeContent->image_three ) }}" style="width:100%" />
+                                @endif
                             <input type="file" name="image_three">
+
+                                @if(isset($dataTypeContent->image_four))
+                                    <img src="{{ filter_var($dataTypeContent->image_four, FILTER_VALIDATE_URL) ? $dataTypeContent->image_four : Voyager::image( $dataTypeContent->image_four ) }}" style="width:100%" />
+                                @endif
                             <input type="file" name="image_four">
 
                         </div>
@@ -255,6 +251,7 @@
                                 <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
                             </div>
                         </div>
+
                         <div class="panel-body">
                             <div class="form-group">
                                 <label for="sizes">86</label>
@@ -262,7 +259,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                                <input class="form-control" type="number" name="sizes[86]" value="{{ $dataTypeContent->sizes ?? '' }}">
+                                <input class="form-control" type="number" name="sizes[86]" value="{{ json_decode($dataTypeContent->sizes, true)[86] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">92</label>
@@ -270,7 +267,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                                <input class="form-control" type="number" name="sizes[92]" value="{{ $dataTypeContent->sizes ?? '' }}">
+                                <input class="form-control" type="number" name="sizes[92]" value="{{ json_decode($dataTypeContent->sizes, true)[92] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">98</label>
@@ -278,7 +275,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                                <input class="form-control" type="number" name="sizes[98]">
+                                <input class="form-control" type="number" name="sizes[98]" value="{{json_decode($dataTypeContent->sizes, true)[98] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">104</label>
@@ -286,7 +283,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                                <input class="form-control" type="number" name="sizes[104]">
+                                <input class="form-control" type="number" name="sizes[104]" value="{{json_decode($dataTypeContent->sizes, true)[104] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">110</label>
@@ -294,7 +291,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                             <input class="form-control" type="number" name="sizes[110]">
+                             <input class="form-control" type="number" name="sizes[110]" value="{{json_decode($dataTypeContent->sizes, true)[110] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">116</label>
@@ -302,7 +299,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                             <input class="form-control" type="number" name="sizes[116]">
+                             <input class="form-control" type="number" name="sizes[116]" value="{{json_decode($dataTypeContent->sizes, true)[116] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">122</label>
@@ -310,7 +307,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                             <input class="form-control" type="number" name="sizes[122]">
+                             <input class="form-control" type="number" name="sizes[122]" value="{{json_decode($dataTypeContent->sizes, true)[122] ?? null}}">
                             </div>
                             <div  class="form-group">
                                 <label for="sizes">128</label>
@@ -318,7 +315,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                             <input class="form-control" type="number" name="sizes[128]">
+                             <input class="form-control" type="number" name="sizes[128]" value="{{json_decode($dataTypeContent->sizes, true)[128] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">134</label>
@@ -326,7 +323,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                             <input class="form-control" type="number" name="sizes[134]">
+                             <input class="form-control" type="number" name="sizes[134]" value="{{json_decode($dataTypeContent->sizes, true)[134] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">140</label>
@@ -334,7 +331,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                             <input class="form-control" type="number" name="sizes[140]">
+                             <input class="form-control" type="number" name="sizes[140]" value="{{json_decode($dataTypeContent->sizes, true)[140] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">146</label>
@@ -342,7 +339,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                             <input class="form-control" type="number" name="sizes[146]">
+                             <input class="form-control" type="number" name="sizes[146]" value="{{json_decode($dataTypeContent->sizes, true)[146] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">152</label>
@@ -350,7 +347,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                             <input class="form-control" type="number" name="sizes[152]">
+                             <input class="form-control" type="number" name="sizes[152]" value="{{json_decode($dataTypeContent->sizes, true)[152] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">158</label>
@@ -358,7 +355,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                             <input class="form-control" type="number" name="sizes[158]">
+                             <input class="form-control" type="number" name="sizes[158]" value="{{json_decode($dataTypeContent->sizes, true)[158] ?? null}}">
                             </div>
                             <div class="form-group">
                                 <label for="sizes">164</label>
@@ -366,7 +363,7 @@
                                   '_field_name'  => 'sizes',
                                   '_field_trans' => get_field_translations($dataTypeContent, 'sizes')
                               ])
-                             <input class="form-control" type="number" name="sizes[164]">
+                             <input class="form-control" type="number" name="sizes[164]" value="{{json_decode($dataTypeContent->sizes, true)[164] ?? null}}">
                             </div>
 
                         </div>
