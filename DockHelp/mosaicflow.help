@@ -1,0 +1,22 @@
+Подключение:
+
+<script src="путь до/jquery/jquery-3.4.1.min.js"></script>
+<script src="путь до/jquery.mosaicflow.min.js"></script>
+
+Использование:
+
+<div class="clearfix mosaicflow">
+	<div class="mosaicflow__item"><img width="500" height="300" src="1.jpg" alt=""> </div>
+	<div class="mosaicflow__item"> <img width="500" height="500" src="2.jpg" alt=""> </div>
+</div>
+
+примеры стилей:
+
+.mosaicflow__column {
+float:left;
+}
+.mosaicflow__item img {
+display:block;
+width:100%;
+height:auto;
+}

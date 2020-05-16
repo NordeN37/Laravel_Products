@@ -1,0 +1,129 @@
+function tinymce_setup_callback(editor){
+
+}
+
+
+function tinymce_init_callback(editor)
+{
+    editor.remove();
+    editor = null;
+
+    tinymce.init({
+        //menubar: false,
+        selector:'textarea.richTextBox',
+        skin_url: $('meta[name="assets-path"]').attr('content')+'?path=js/skins/voyager',
+        min_height: 600,
+        language: 'ru',
+        resize: 'vertical',
+        plugins: 'link media template codesample image imagetools code table textcolor lists wordcount',
+        image_class_list: [
+            { title: "Адаптивное", value: "lazy img-responsive img-post img-fluid" }
+        ],
+        imagetools_cors_hosts: ['a-galiev.blog.cms.dev-01.h.involta.ru'],
+        //plugins: 'print preview fullpage powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons',
+        file_browser_callback: function(field_name, url, type, win) {
+            if(type =='image'){
+                $('#upload_file').trigger('click');
+            }
+        },
+        //toolbar: 'styleselect bold italic underline | forecolor backcolor | alignleft aligncenter alignright | bullist numlist outdent indent | link image table | code',
+        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed link anchor codesample | a11ycheck ltr rtl | showcomments addcomment | template',
+        convert_urls: false,
+        image_caption: true,
+        image_title: true,
+        table_default_attributes: {
+            'class': 'table'
+        },
+        table_responsive_width: true,
+        media_url_resolver: function (data, resolve/*, reject*/) {
+            if (data.url.indexOf('https://www.youtube.com/watch?v=') !== -1) {
+                var youtube_id = data.url.split('watch?v=');
+                var embedHtml = '<div class="youtube-video youtube-video-tiny"><iframe src="https://www.youtube.com/embed/' + youtube_id[1] + '?feature=oembed&amp;wmode=opaqu"  width="870" height="510" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>';
+                resolve({html: embedHtml});
+            } else {
+                resolve({html: ''});
+            }
+        },
+        templates: [
+            {title: 'Таблица результатов 3 колонки', description: 'Адаптивная таблица 3 колонки', content: '<div class="table-responsive">' +
+                    '<table class="table table-hover table-striped table-bordered" style="border-collapse: collapse; width: 100%;">' +
+                    '<caption align="top">Заголовок</caption>\n' +
+                    '  <thead>\n' +
+                    '    <tr>\n' +
+                    '      <th scope="col">&nbsp;</th>\n' +
+                    '      <th scope="col">&nbsp;</th>\n' +
+                    '      <th scope="col">&nbsp;</th>\n' +
+                    '    </tr>\n' +
+                    '  </thead>' +
+                    '<tbody>\n' +
+                    '<tr>\n' +
+                    '<td class="text-left" style="width: 33.3333%;">Россия</td>\n' +
+                    '<td class="text-center" style="width: 33.3333%;">2:1</td>\n' +
+                    '<td class="text-right" style="width: 33.3333%;">Морокко</td>\n' +
+                    '</tr>\n' +
+                    '<tr>\n' +
+                    '<td class="text-left" style="width: 33.3333%;">&nbsp;</td>\n' +
+                    '<td class="text-center" style="width: 33.3333%;">&nbsp;</td>\n' +
+                    '<td class="text-right" style="width: 33.3333%;">&nbsp;</td>\n' +
+                    '</tr>\n' +
+                    '</tbody>\n' +
+                    '</table>' +
+                    '</div>'},
+            {title: 'Таблица результатов 2 колонки', description: 'Адаптивная таблица 2 колонки', content: '<div class="table-responsive">' +
+                    '<table class="table table-hover table-striped table-bordered" style="border-collapse: collapse; width: 100%;">' +
+                    '<caption align="top">Заголовок</caption>\n' +
+                    '<tbody>\n' +
+                    '<tr>\n' +
+                    '<td class="text-left" style="width: 15%;">1.</td>\n' +
+                    '<td class="text-left" style="width: 65%;">Россия</td>\n' +
+                    '<td class="text-right" style="width: 20%;">1:32:56</td>\n' +
+                    '</tr>\n' +
+                    '<tr>\n' +
+                    '<td class="text-left" style="width: 15%;">2.</td>\n' +
+                    '<td class="text-left" style="width: 65%;">Норвегия</td>\n' +
+                    '<td class="text-right" style="width: 20%;">+ 8:31</td>\n' +
+                    '</tr>\n' +
+                    '</tbody>\n' +
+                    '</table>' +
+                    '</div>'
+            },
+            {
+                title : 'Расписание', description: 'Расписание на день', content: '<div class="table-responsive table-results">\n' +
+                    '<table class="table table-hover table-striped table-bordered table-results_table" style="border-collapse: collapse; width: 100%;">\n' +
+                    '<thead class="js-table_thead">\n' +
+                    '<tr>\n' +
+                    '<th style="width: 20%;">Вид спорта</th>\n' +
+                    '<th style="width: 10%;">Начало</th>\n' +
+                    '<th style="width: 10%;">Пол</th>\n' +
+                    '<th style="width: 40%;">Дисциплина</th>\n' +
+                    '<th class="text-right" style="width: 25%;">Тип</th>\n' +
+                    '</tr>\n' +
+                    '</thead>' +
+                    '<tbody>\n' +
+                    '<tr>\n' +
+                    '<td class="text-left">Тяжёлая атлетика</td>\n' +
+                    '<td class="text-left">03:00</td>\n' +
+                    '<td class="text-left">М</td>\n' +
+                    '<td class="text-left">мужчины, одиночный разряд</td>\n' +
+                    '<td class="text-right">Групповой этап</td>\n' +
+                    '</tr>\n' +
+                    '<tr>\n' +
+                    '<td class="text-left">Тяжёлая атлетика</td>\n' +
+                    '<td class="text-left">03:00</td>\n' +
+                    '<td class="text-left">М</td>\n' +
+                    '<td class="text-left">мужчины, одиночный разряд</td>\n' +
+                    '<td class="text-right">Групповой этап</td>\n' +
+                    '</tr>\n' +
+                    '</tbody>\n' +
+                    '</table>\n' +
+                    '</div>'
+            },
+            {title: 'Форматированная цитата', description: 'Форматированная цитата',
+                content: '<blockquote class="blockquote blockquote-styled card-blockquote pl-3 pr-3">\n' +
+                            '<p>Я сказал один два три</p>' +
+                            '<p><strong>Автор фразы</strong></p>\n' +
+                            '</blockquote>'
+            },
+        ]
+    });
+}

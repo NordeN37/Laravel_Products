@@ -1,0 +1,134 @@
+#Создание контроллера и модели
+php artisan make:controller AuthController
+php artisan make:model Auth
+
+#Создание миграции
+php artisan make:migration create_stimulation_table
+
+#Миграция
+php artisan migrate
+https://laravel.ru/posts/273
+
+#Заполнение данные по умолчанию
+php artisan make:seeder DatabaseSeeder
+
+#Откат миграции
+php artisan migrate:rollback
+
+#Перестроение данных
+php artisan migrate:fresh --seed
+
+php artisan migrate --path=/database/migrations/2020_03_25_125756_create_search_results_table.php
+
+#Добавление валидатора запросов
+php artisan make:request UserRequest
+
+#Шаблоны
+resources/views/layouts/app.blade.php - основной шаблон
+resources/views/layouts/headers/cards.blade.php - шаблон шапки
+resources/views/layouts/footer/nav.blade.php - шаблон подвала
+
+
+#Очистка кэша
+
+php artisan config:cache
+php artisan cache:clear
+
+#time amd date
+
+date -> timestamp
+$timestamp = strtotime('22-09-2008');
+
+timestamp -> date
+$date date('m/d/Y H:i:s', 1299446702);
+
+
+#Валидация данных
+https://laravel.ru/docs/v5/validation
+http://laravel.su/docs/5.0/validation
+
+#Конструктор запросов
+https://laravel.ru/docs/v5/queries
+
+#Работа с коллекциями
+https://laravel.ru/docs/v5/collections
+
+#Модели
+https://laravel.com/dmocs/5.8/eloquent#defining-models
+https://laravel.ru/docs/v5/eloquent
+
+
+#Смена прав логов с 644 на 777
+cd /home/a-galiev/report-backend/storage/logs/
+sudo chmod 777 /home/a-aleynikov/ctnews/storage/logs/laravel-2020-04-22.log
+
+#loop и циклы в .blade
+https://laravel.ru/posts/656
+
+
+#Выборка по датам годам и дням
+https://laravel.ru/docs/v5/queries#%D0%BE%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_json-%D1%81%D1%82%D0%BE%D0%BB%D0%B1%D1%86%D0%BE%D0%B2-10
+
+
+#OpenID
+https://github.com/furdarius/oidconnect-laravel/blob/master/README.md
+
+#Округления
+echo ceil($x); // 124 (к большему целому значению)
+echo floor($x); // 123 (к меньшему целому значению)
+echo round($x); // 123 (математически к ближайшему)
+
+$x = 123.8393;
+echo round($x, 1); // 123.8
+echo round($x, 2); // 123.84
+echo round($x, 3); // 123.839
+
+
+#php artisan make:seeder OldCuratorToUser
+
+#Перенос
+
+
+php artisan migrate
+php artisan db:seed --class=DatabaseSeeder
+php artisan db:seed --class=OldReports
+php artisan db:seed --class=OldReportsEnd
+
+
+/*
+php artisan db:seed --class=OldUsersSeeder
+php artisan db:seed --class=OldUserSalarys
+php artisan db:seed --class=OldProjects
+php artisan db:seed --class=OldManagersToProjects
+php artisan db:seed --class=OldCuratorToUser
+php artisan db:seed --class=OldUsersRole
+php artisan db:seed --class=OldReports
+php artisan db:seed --class=OldReportsEnd
+php artisan db:seed --class=OldHolidays
+php artisan db:seed --class=OldStimulations
+php artisan db:seed --class=UsersTechnologyStack
+php artisan db:seed --class=OldYearholidaysSeeder
+// php artisan db:seed --class=OldPayments Не актуально
+*/
+
+
+#datetimepicker
+
+ minView: 4, (детальность 4-года 3-месяца и т.д )
+ startView: 4,(начать с 4-выбора года, 3- выбора месяца и т.д)
+
+Laravel Excel
+https://github.com/rap2hpoutre/fast-excel
+
+
+php artisan cache:clear
+php artisan route:clear
+php artisan config:clear
+php artisan view:clear
+
+
+
+pg_dump -h localhost -U blogger -d bloggerdb -f bloggerdb.sql
+sudo -u postgres dropdb bloggerdb
+sudo -u postgres createdb -O blogger bloggerdb
+psql -h localhost -U blogger -d bloggerdb -f bloggerdb.sql

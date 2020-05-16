@@ -1,0 +1,42 @@
+Необходимые библиотеки:
+jQuery
+DataTables.js
+
+Подключаем css
+<link rel="stylesheet" type="text/css" href="/jquery/plugins/DataTables/datatables.css">
+Подключаем js
+<script type="text/javascript" charset="utf8" src="/jquery/plugins/DataTables/datatables.min.js"></script>
+
+Используем:
+$(document).ready( function () {
+    $('#table_id').DataTable({
+    "language": {
+                "url": "/jquery/plugins/DataTables/language/Russian.json"
+            },
+    "dom": "<'row'<'col-12 col-sm-6 col-md-3 text-left search-position-left'f><'col-12 col-sm-6 col-md-3 offset-md-6 float-right on-page_controllers text-right'l> >" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-12 col-md-6'i><'col-sm-12 col-md-6'p>>",
+    "lengthMenu": [ [20, 50, 100, 150, -1], [20, 50, 100, 150, "Все"] ],
+    "order" : []
+    });
+} );
+
+Пример:
+ <table id="table_id" class="display">
+     <thead>
+         <tr>
+             <th>Column 1</th>
+             <th>Column 2</th>
+         </tr>
+     </thead>
+     <tbody>
+         <tr>
+             <td>Row 1 Data 1</td>
+             <td>Row 1 Data 2</td>
+         </tr>
+         <tr>
+             <td>Row 2 Data 1</td>
+             <td>Row 2 Data 2</td>
+         </tr>
+     </tbody>
+ </table>
+
+

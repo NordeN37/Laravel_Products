@@ -1,0 +1,16 @@
+Подключение
+<link rel="stylesheet" href="путь до/css/bootstrap.min.css" >
+
+Подключаем jQuery
+<script src="путь до/jquery/jquery-3.4.1.min.js"></script>
+
+Подключаем плагин Popper (необходим для работы компонента Dropdown и др.)
+<script src="путь до/bootstrap/js/popper.min.js"></script>
+
+Подключаем Bootstrap JS
+<script src="путь до/bootstrap/js/bootstrap.min.js"></script>
+
+
+Используем:
+
+https://bootstrap-4.ru/docs/4.4/layout/overview/

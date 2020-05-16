@@ -1,0 +1,20 @@
+Подключаем к странице js
+<script type="text/javascript" src="path/to/lightbox.js"></script>
+
+Подключаем к странице css
+<link href="path/to/lightbox.css" rel="stylesheet" />
+
+Также не забудьте проверить в файле CSS ссылки на prev.gif next.gif. и убедитесь в правильности ссылок на loading.gif и close.gif, в файле lightbox.js.
+
+ Вставляем ссылку ссылку в тело документа, затем ссылке добавляем атрибут rel="lightbox".
+Например:
+<a href="images/image-1.jpg" rel="lightbox" title="Название"><img src=” images/image.jpg”></a>
+
+Атрибут title необходим для добавления подписи к картинки.
+
+б. Если Вы хотите сгруппировать несколько превьюшек, например, по определенной тематике, то нужно дополнительно включить в атрибут rel имя группы в квадратных скобках.
+<a href="images/image-1.jpg" rel="lightbox[roadtrip]">image #1</a>
+<a href="images/image-2.jpg" rel="lightbox[roadtrip]">image #2</a>
+<a href="images/image-3.jpg" rel="lightbox[roadtrip]">image #3</a>
+
+Теперь картинки можно просматривать используя клавиши "Влево" и "Вправо".

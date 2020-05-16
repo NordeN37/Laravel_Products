@@ -1,0 +1,45 @@
+Подключение:
+ <script src="instafilta.min.js"></script>
+
+Использование:
+$('#username-filtering').instaFilta({
+    targets: '.username',
+    beginsWith: true
+});
+
+Демо:
+http://chromawoods.com/instafilta/demo/
+
+Github(c полным описанием):
+https://github.com/chromawoods/instaFilta
+
+Пример:
+<section class="section" id="s3">
+            <div class="l-1-2">
+                <div class="padded-content-h">
+                   <h2> Пример </h2>
+                </div>
+            </div>
+            <div class="box l-1-2">
+                <div class="example" id="ex3">
+                    <fieldset class="controls">
+                        <input type="text" id="ex3f" placeholder="Type here to filter">
+                    </fieldset>
+                    <ul class="example-list example-list-quad">
+                        <li><span class="planet-name">Mercury</span></li>
+                        <li><span class="planet-name">Venus</span></li>
+                        <li><span class="planet-name">Tellus</span></li>
+                        <li><span class="planet-name">Mars</span></li>
+                        <li><span class="planet-name">Jupiter</span></li>
+                        <li><span class="planet-name">Saturn</span></li>
+                        <li><span class="planet-name">Uranus</span></li>
+                        <li><span class="planet-name">Neptune</span></li>
+                    </ul>
+                </div>
+                <pre class="box box-code">
+$('#my-input-field').instaFilta({
+    targets: '.username',
+       beginsWith: true
+});</pre>
+            </div>
+        </section>

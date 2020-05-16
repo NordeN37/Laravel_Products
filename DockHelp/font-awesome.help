@@ -1,0 +1,9 @@
+Подключение:
+
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+Использование:
+<i class="fa fa-camera-retro"></i>  <!-- version 4's syntax -->
+
+Иконки:
+https://fontawesome.com/v4.7.0/icons/
