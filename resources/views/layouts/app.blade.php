@@ -9,6 +9,10 @@
     <title>@yield('title')</title>
 @yield('meta')
     <link rel="stylesheet" type="text/css" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/icon-font.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/plugins.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/helper.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.min.css') }}?v={{ Config::get('app.media_files_version') }}">
     @yield('css')
     <script>
@@ -37,28 +41,25 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Rubik:300,400&display=swap" rel="stylesheet">
 </head>
 <body class="{{ $class ?? '' }}  page-{{ str_replace('.', '_', Route::currentRouteName()) }}">
-<header id="header">
+<div class="main-wrapper">
 @yield('header')
-@yield('topmenu')
-@yield('nav')
-</header>
 @yield('content')
 @yield('footer')
+</div>
 <!-- JS-->
 <script src="{{ asset('/jquery/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ asset('/js/magazin_js/vendor/jquery-1.12.4.min.js') }}"></script>
 <script src="{{ asset('/bootstrap/js/popper.min.js') }}"></script>
-@if( Route::currentRouteName() !== 'post.testsearch') <script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}"></script> @endif
+<script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/js/magazin_js/vendor/modernizr-2.8.3.min.js') }}"></script>
+<script src="{{ asset('/js/plugins.js') }}"></script>
+<script src="{{ asset('/js/magazin_js/ajax-mail.js') }}"></script>
+<script src="{{ asset('/js/magazin_js/main.js')}}"></script>
 @yield('js')
-<script src="{{ asset('/js/main.min.js') }}?v={{ Config::get('app.media_files_version') }}"></script>
-<!-- JS-->
-<link rel="stylesheet" type="text/css" href="{{ asset('/css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-@if(setting('site.allowComments') &&  Route::currentRouteName() !== 'post.testsearch')
-    <script id="dsq-count-scr" src="//{{setting('site.disquslink')}}.disqus.com/count.js" async></script>
-@endif
-@if(setting('site.socialsButtons') &&  Route::currentRouteName() !== 'post.testsearch' )
-    <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
-    <script src="https://yastatic.net/share2/share.js"></script>
-@endif
+{{--<script src="{{ asset('/js/main.min.js') }}?v={{ Config::get('app.media_files_version') }}"></script>--}}
+{{--<!-- JS-->--}}
+{{--<link rel="stylesheet" type="text/css" href="{{ asset('/css/font-awesome-4.7.0/css/font-awesome.min.css') }}">--}}
+{{--<script src="{{ asset('js/app.js') }}"></script>--}}
 {!! setting('site.footerSctipts') !!}
 {!! setting('site.footerCSS') !!}
 </body>

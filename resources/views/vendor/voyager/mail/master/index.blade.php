@@ -1,0 +1,2 @@
+
+{{ $objMaleBoughts->body}}

@@ -20,17 +20,22 @@ Route::get('/robots.txt', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
-    Route::match(['get', 'post'],'/VoyagerS/{id}',                              ['uses' => 'AdminProductController@VoyagerUpdate',  'as' => 'update']);
+    Route::match(['get', 'post'],'/VoyagerS/{id}',                          ['uses' => 'AdminProductController@VoyagerUpdate',  'as' => 'update']);
     Route::match(['get', 'post'],'/VoyagerStore',                           ['uses' => 'AdminProductController@VoyagerStore',  'as' => 'store']);
 
-    Route::match(['get', 'post'], 'export',                 ['as' => 'export',               'uses' => 'CsvController@export']);
-    Route::post('import',                                   ['as' => 'import',               'uses' => 'CsvController@import']);
-    Route::match(['get', 'post'], 'importExportView',       ['as' => 'importExportView',     'uses' => 'CsvController@importExportView']);
+    Route::match(['get', 'post'], 'mail',                                   ['as' => 'mail',                 'uses'=>'MailController@index']);
+    Route::match(['get', 'post'], 'mail_sendingAdmin',                      ['as' => 'mail_sendingAdmin',    'uses'=>'MailController@sendingAdmin']);
+
+    Route::match(['get', 'post'], 'export',                                 ['as' => 'export',               'uses' => 'CsvController@export']);
+    Route::post('import',                                                   ['as' => 'import',               'uses' => 'CsvController@import']);
+    Route::match(['get', 'post'], 'importExportView',                       ['as' => 'importExportView',     'uses' => 'CsvController@importExportView']);
 });
 
-Route::get('/',                                             ['as' => 'index',           'uses' => 'PageController@index']);
-Route::get('/post/{slug}',                                  ['as' => 'post',            'uses' => 'PostController@index']);
-Route::get('/category/{slug}',                              ['as' => 'category',        'uses' => 'CategoryController@index']);
+    Route::get('/',                                             ['as' => 'index',           'uses' => 'PageController@index']);
+    Route::get('/post/{slug}',                                  ['as' => 'post',            'uses' => 'PostController@index']);
+    Route::get('/category/{slug}',                              ['as' => 'category',        'uses' => 'CategoryController@index']);
+    Route::get('/zakaz',                                        ['as' => 'zakaz',           'uses' => 'BoughtsController@index']);
+    Route::post('/zakaz/create',                                ['as' => 'createZakaz',     'uses' => 'BoughtsController@createZakaz']);
 
 /* Sitemap */
 Route::get('/sitemap.xml',          'SitemapController@index');

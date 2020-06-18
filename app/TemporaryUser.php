@@ -12,4 +12,19 @@ class TemporaryUser extends Model
         'id',
         'user_ip'
     ];
+
+    public function createUserIp($userIp){
+        //Записываем данные о пользователе
+
+
+        $products = $this->firstOrNew(
+            [
+                'user_ip'               => $userIp
+            ]
+        );
+
+        $products -> save();
+
+    }
+
 }

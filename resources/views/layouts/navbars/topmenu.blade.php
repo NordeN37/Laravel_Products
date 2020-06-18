@@ -1,4 +1,4 @@
-<div class="menu-container">
+<div id="newapp" class="menu-container">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -13,6 +13,14 @@
                             <a class="nav-item nav-link active" href="{{ route('category', $category->slug )}}">{{ $category->name }} <span class="sr-only">(current)</span></a>
                         </div>
                         @endforeach
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <cart-dropdown></cart-dropdown><b class="caret"></b></a>
+                        </li>
+                    </ul>
+                    <div class="collapse navbar-collapse">
+                        <p>{{$temporaryUs}}</p>
                     </div>
                 </nav>
             </div>

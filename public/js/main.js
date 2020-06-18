@@ -183,6 +183,17 @@ function scrollTopButtonInit(){
     });
 }
 
+const button_korzina = document.querySelector('.korzina');
+console.log(button_korzina);
+
+// On mouse-over, execute myFunction
+function myFunction1(button) {
+    button.addEventListener('click', function(e) {
+        console.log(e);
+    })
+}
+
+myFunction1(button_korzina);
 
 
 $(document).ready(function(){
